@@ -16,6 +16,7 @@ class VoidImages {
   // static const String map = "assets/images/map.png";
   // static const String mini_logo = "assets/images/mini-logo.png";
   static const String background = "assets/images/background.png";
+  static const String background2 = "assets/images/background-2.png";
 
   static const String bar = "assets/images/bar.png";
   // static const String map = "assets/images/map.png";

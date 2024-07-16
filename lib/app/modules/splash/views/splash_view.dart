@@ -23,6 +23,7 @@ class _SplashViewState extends State<SplashView>
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _showWelcomeText = true;
+
   @override
   void initState() {
     super.initState();
@@ -62,35 +63,54 @@ class _SplashViewState extends State<SplashView>
             VoidImages.background,
             fit: BoxFit.cover,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Stack(
             children: [
-              Image.asset(
-                VoidImages.logo,
-                width: 200.w,
-                height: 200.h,
-                // color: Colors.white,
+              Center(
+                // Change 2: Centered the logo
+                child: Image.asset(
+                  VoidImages.logo,
+                  width: 200.w,
+                  height: 200.h,
+                  // color: Colors.white,
+                ),
               ),
-              SizedBox(height: 340.h),
-              if (_showWelcomeText)
-                Text(
-                  'Welcome to',
-                  style: GoogleFonts.poppins(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              Positioned(
+                bottom: 0,
+                right: 0,
+                left: 0,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Change 3: Added SizedBox to create space for the logo
+                      if (_showWelcomeText)
+                        Text(
+                          'Welcome to',
+                          style: GoogleFonts.poppins(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      Text(
+                        'BLUSH SALOON',
+                        style: GoogleFonts.luckiestGuy(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      if (!_showWelcomeText)
+                        CustomLoader(controller: _controller),
+                      SizedBox(
+                        height: 24.h,
+                      )
+                    ],
                   ),
                 ),
-              Text(
-                'BLUSH SALOON',
-                style: GoogleFonts.luckiestGuy(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
               ),
-              SizedBox(height: 10.h),
-              if (!_showWelcomeText) CustomLoader(controller: _controller),
             ],
           ),
         ],
